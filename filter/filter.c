@@ -15,21 +15,21 @@ int	filter(char *pajar, char *aguja)
 	while(pajar[i])
 	{
 		j = 0;
-		while(pajar[j + i] == aguja[j] && aguja[j])
+		while(pajar[j + i] == aguja[j] && aguja[j]) //avanzamos en la aguja
 			j++;
 
-		if(strlen(aguja) == j)
+		if(strlen(aguja) == j) //hasta su largo
 		{
-			while(j > 0)
+			while(j > 0) //bajamos pintando
 			{
 				write(1,"*",1);
 				j--;
 			}
-			i += strlen(aguja);
+			i += strlen(aguja); //avanzamos indice
 		}
 		else
 		{
-			write(1, &pajar[i], 1);
+			write(1, &pajar[i], 1); //o pintamos lo que no coincide
 			i++;
 		}
 	}
@@ -53,7 +53,7 @@ char	*read_all(void)
 	}
 	while((r_bytes = read(0, buffer, BUFFER_SIZE)) > 0)
 	{
-		temp = realloc(result, t_bytes + r_bytes + 1);
+		temp = realloc(result, t_bytes + r_bytes + 1); //necesitamos un temporal para el realloc
 		if (!temp)
 		{
 			free(buffer);
@@ -61,10 +61,10 @@ char	*read_all(void)
 			perror("Error");
 			return (NULL);
 		}
-		result = temp;
-		memmove(result + t_bytes, buffer, r_bytes);
+		result = temp; //reasignamos puntero
+		memmove(result + t_bytes, buffer, r_bytes); //movemos el contenido
 		t_bytes += r_bytes;
-		result[t_bytes] = '\0';
+		result[t_bytes] = '\0'; //rellenamos el ultimo
 	}
 	free(buffer);
 	if(r_bytes < 0)
@@ -81,16 +81,15 @@ int	main(int argc, char *argv[])
 {
 	char	*pajar;
 
-	if(argc != 2 || !argv[1] || argv[1][0] == '\0')
+	//validaciones
+	if(argc != 2 || argv[1][0] == '\0')
 		return(1);
+	//obtenemos pajar, puede fallar
 	if(!(pajar = read_all()))
 		return (1);
-	if(!filter(pajar, argv[1]))
-	{
-		free(pajar);
-		perror("Error");
-		return (1);
-	}
+	//llamamos filter
+	filter(pajar, argv[1]);
+	//liberamos mem y salimos
 	free(pajar);
 	return (0);
 }
