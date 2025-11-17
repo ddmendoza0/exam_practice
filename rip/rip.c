@@ -86,8 +86,6 @@ int	main(int argc, char **argv)
 		return (1);
 	if (!is_valid_input(argv[1]))
 		return(1);
-	//int	min_removal = min_removals(argv[1]);
-	//if (mion_rem == 0 && is_balanced(argv[1]))
 	recursiva(argv[1], 0, 0, min_removals(argv[1]));
 	return (0);
 }
