@@ -33,7 +33,7 @@ int	is_solution(char *rip)
 			open++;
 		if (rip[i] == ')')
 		{
-			if (open > close)
+			if (open > 0)
 				open--;
 			else
 				return (0);
