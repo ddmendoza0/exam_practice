@@ -15,7 +15,9 @@ int	is_valid(int fila, int columna, int *board)
 
 }
 
-//imprimir
+//imprimir la solucion
+//puede que haya que craftear una funcion mas detallada
+//depende del enunciado
 void	print_solution(int *board, int n)
 {
 	for (int i = 0; i < n; i++)
@@ -58,6 +60,7 @@ int	main(int argc, char **argv)
 	if (!board)
 		return (1);
 	
+	//llamada a la funcion recursiva	
 	recursiva(board, n, 0);
 
 	free(board);

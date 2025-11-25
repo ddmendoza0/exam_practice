@@ -2,7 +2,8 @@
 #include <unistd.h>
 #include <stdio.h>
 
-
+//printeo de la solucion formatado
+//podria cambiar en funcion del enunciado
 void print_solution(int *solution, int sol_size)
 {
 	for (int i = 0; i < sol_size; i++)
@@ -18,7 +19,7 @@ void print_solution(int *solution, int sol_size)
 void	solver(int *nums, int n, int target, int idx, int current_sum, int *solution, int sol_size)
 {
 	// comprobación de caso base
-	// cuando lleags al final
+	// cuando llegas al final
 	if (idx == n)
 	{
 		// si la suma es target y tenemos 1 numero min: imprime.
@@ -27,7 +28,7 @@ void	solver(int *nums, int n, int target, int idx, int current_sum, int *solutio
 		return ;
 	}
 	
-	//avanzar de numero
+	//avanzar de numero sin anyadirlo a la solution
 	solver(nums, n, target, idx + 1, current_sum, solution, sol_size);
 
 	//anadimos el numero en este indice a la solucion
@@ -39,23 +40,25 @@ int	main(int argc, char **argv)
 {
 	if (argc < 3)
 		return (0);
-	int	target = atoi(argv[1]);
-	int	n = argc - 2;
-	int	*nums = malloc(sizeof(int) * n);
+	int	target = atoi(argv[1]); //obtenemos el target
+	int	n = argc - 2; //numero de ints en el set
+	int	*nums = malloc(sizeof(int) * n); //mem para el set
 	if(!nums)
 		return (1);
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < n; i++)//mapeamos el set
 		nums[i] = atoi(argv[i + 2]);
 	
-	int	*solutions = malloc(sizeof(int) * n);
+	int	*solutions = malloc(sizeof(int) * n);//max solution de max numeros en set
 	if (!solutions)
 	{
 		free(nums);
 		return (1);
 	}
 
+	//recursivaaaaaa
 	solver(nums, n, target, 0, 0, solutions, 0);
-
+	
+	//limpieza y salida
 	free(solutions);	
 	free(nums);
 	return (0);

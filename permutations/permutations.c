@@ -25,6 +25,7 @@ void	recursiva(char *str, char *permutation, int *used, int len, int index)
 }
 
 //ordenacion previa
+//no buscamos eficiencia, buscamos codigo facil
 void	sort_str(char	*str)
 {
 	int	i = 0;
@@ -76,6 +77,7 @@ int	main(int argc, char **argv)
 	//primera llamada a recursion
 	recursiva(argv[1], permutation, used, len, 0);
 	
+	//liberamos mem y salimos
 	free(used);
 	free(permutation);
 	return (0);
