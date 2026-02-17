@@ -7,7 +7,7 @@ int ft_popen(const char *file, char *const argv[], char type)
 	pid_t	pid; //id del proceso hijo
 	
 	//Validar los parametros de entrada
-	if (!file || !argv || (type !+ 'r' && type != 'w'))
+	if (!file || !argv || (type != 'r' && type != 'w'))
 		return (-1);
 
 	//Creacion de pipe
