@@ -24,7 +24,7 @@ int ft_popen(const char *file, char *const argv[], char type)
 	}
 	if (pid == 0) //codigo para el hijo
 	{
-		if (type = 'r')
+		if (type == 'r')
 			dup2(pipefd[1], STDOUT_FILENO); //stdout del hijo -> escritura
 		else // 'w'
 			dup2(pipefd[0], STDIN_FILENO); //stdin del hijo -> lectura
