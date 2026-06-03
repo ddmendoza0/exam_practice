@@ -12,7 +12,7 @@ class   bigint
         bigint(void);
         bigint(unsigned long long n);
         bigint(const bigint& other);
-        bigint& operator=(const bigint other);
+        bigint& operator=(const bigint& other);
         ~bigint(void);
 
         bigint  operator+(const bigint& other) const; //addition
